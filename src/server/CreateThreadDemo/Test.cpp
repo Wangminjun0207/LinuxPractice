@@ -9,11 +9,13 @@ void *Test::PrintHello(void* threadid){
 void Test::test(){
     pthread_t pth[NUM_THREADS];
 	int indexes[NUM_THREADS];// 用数组来保存i的值
+	void *status;
 	for(int i=0; i < NUM_THREADS; i++ )
 	{
 		indexes[i] = i; //先保存i的值
 		void *p  = &indexes[i];
 		cout << "main() : 创建线程, " << i << endl;
 		pthread_create(&pth[i], NULL, PrintHello, p);
+		pthread_join(pth[i],&status);
    }
 }
