@@ -7,20 +7,20 @@
 #include <unistd.h>
 #include <stdio.h>
  
-#define SERVER_PORT 8888 //¶Ë¿ÚºÅ£¬¶¨ÒåÎªºê·½±ãÒÔºóÖ±½ÓĞŞ¸Ä
+#define SERVER_PORT 8888 //ç«¯å£å·ï¼Œå®šä¹‰ä¸ºå®æ–¹ä¾¿ä»¥åç›´æ¥ä¿®æ”¹
 #define BACKLOG     10   
  
 int main()
 {
 	int SocketServer;
 	int SocketClient;
-	struct sockaddr_in SocketServerAddr;//·şÎñÆ÷µØÖ·½á¹¹
+	struct sockaddr_in SocketServerAddr;//æœåŠ¡å™¨åœ°å€ç»“æ„
 	struct sockaddr_in SocketClientAddr;
 	int Ret;
 	int AddrLen;
  
 	int RecvLen;
-	char RecvBuf[1000];//·şÎñÆ÷ÊÕµ½Êı¾İµÄ»º³åÇø
+	char RecvBuf[1000];//æœåŠ¡å™¨æ”¶åˆ°æ•°æ®çš„ç¼“å†²åŒº
  
 	int ClientNum = -1;
 	
@@ -64,7 +64,7 @@ int main()
 			{
 				while (1)
 				{
-					/* ½ÓÊÕ¿Í»§¶Ë·¢À´µÄÊı¾İ²¢ÏÔÊ¾³öÀ´ */
+					/* æ¥æ”¶å®¢æˆ·ç«¯å‘æ¥çš„æ•°æ®å¹¶æ˜¾ç¤ºå‡ºæ¥ */
 					RecvLen = recv(SocketClient, RecvBuf, 999, 0);
 					if (RecvLen <= 0)
 					{
@@ -73,7 +73,7 @@ int main()
 					}
 					else
 					{
-						ucRecvBuf[RecvLen] = '\0';
+						RecvBuf[RecvLen] = '\0';
 						printf("Get Msg From Client %d: %s\n", ClientNum, RecvBuf);
 					}
 				}				
