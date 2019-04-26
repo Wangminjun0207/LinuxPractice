@@ -18,7 +18,8 @@ int main(int argc, char **argv)
 	int Ret;
 	char SendBuf[1000];
 	int SendLen;
- 
+
+	
 	if (argc != 2)
 	{
 		printf("Usage:\n");
@@ -36,25 +37,17 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
- 
- 
 	Ret = connect(SocketClient, (const struct sockaddr *)&SocketServerAddr, sizeof(struct sockaddr));	
 	if (-1 == Ret)
 	{
 		printf("connect error!\n");
 		return -1;
 	}
- 
+
 	while (1)
 	{
-		if (fgets(SendBuf, 999, stdin))
-		{
+		if (fgets(SendBuf, 999, stdin)){
 			SendLen = send(SocketClient, SendBuf, strlen(SendBuf), 0);
-			if (SendLen <= 0)
-			{
-				close(SocketClient);
-				return -1;
-			}
 		}
 	}
 	

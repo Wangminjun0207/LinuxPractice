@@ -24,7 +24,6 @@ int main()
  
 	int ClientNum = -1;
 	
-
 	
 	SocketServer = socket(AF_INET, SOCK_STREAM, 0);
 	if (-1 == SocketServer)
@@ -51,7 +50,8 @@ int main()
 		printf("listen error!\n");
 		return -1;
 	}
- 
+	
+	
 	while (1)
 	{
 		AddrLen = sizeof(struct sockaddr);
@@ -66,15 +66,14 @@ int main()
 				{
 					/* 接收客户端发来的数据并显示出来 */
 					RecvLen = recv(SocketClient, RecvBuf, 999, 0);
-					if (RecvLen <= 0)
-					{
-						close(SocketClient);
-						return -1;
-					}
-					else
+					if (RecvLen > 0)
 					{
 						RecvBuf[RecvLen] = '\0';
 						printf("Get Msg From Client %d: %s\n", ClientNum, RecvBuf);
+					}
+					else{
+						close(SocketClient);
+						return -1;
 					}
 				}				
 			}
