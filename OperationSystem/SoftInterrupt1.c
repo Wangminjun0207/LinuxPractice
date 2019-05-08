@@ -20,7 +20,7 @@ int main()
         kill(p1,16); //send signal 16 to end the process p1
         wait(0); //waiting for the ending of p1
 		lockf(1,1,0);
-        printf("parent process is killed!\n");
+        printf("parent process %d is killed!\n",getpid());
 		lockf(1,0,0);
         exit(0); //quit from the parent process
     }
